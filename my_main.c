@@ -353,6 +353,14 @@ void my_main() {
         copy_matrix(tmp, peek(systems));
         tmp->lastcol = 0;
         break;
+      case MESH:
+	printf("mesh");
+	name = op[i].op.mesh.name;
+	add_mesh(tmp, name);
+	matrix_mult(peek(systems), tmp);
+	draw_polygons(tmp, t, zb, view, light, ambient,
+                      areflect, dreflect, sreflect);
+	tmp->lastcol = 0;
       case PUSH:
         //printf("Push");
         push(systems);
