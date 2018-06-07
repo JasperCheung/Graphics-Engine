@@ -9,6 +9,22 @@
 #include "math.h"
 #include "gmath.h"
 
+/*======== void add_mesh() ==========
+  Inputs: struct matrix * edges
+          char * name
+  Returns:
+
+  Reads from specificied .obj file and adds polygons
+  ====================*/
+void add_mesh(struct matrix * edges, char * name) {
+  //open file
+  //read from
+  //specify array size
+  //add verticies
+  //read faces
+  //add edges based on array indicies
+}
+
 /*======== void scanline_convert() ==========
   Inputs: struct matrix *points
           int i

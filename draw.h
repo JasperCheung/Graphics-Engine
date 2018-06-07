@@ -16,6 +16,7 @@ void draw_polygons( struct matrix * points, screen s, zbuffer zb,
                     double *areflect, double *dreflect, double *sreflect);
 
 //3d shapes
+void add_mesh( struct matrix * edges, char * name);
 void add_box( struct matrix * edges,
               double x, double y, double z,
               double width, double height, double depth );
