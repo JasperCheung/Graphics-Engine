@@ -93,6 +93,18 @@ def draw_polygons( matrix, screen, zbuffer, view, ambient, light, areflect, dref
             #            screen, zbuffer, color)
         point+= 3
 
+def add_mesh(polygons, filename):
+    vert = []
+    f = open(filename, 'r')
+    text = f.read().split("\n")
+    for item in text:
+        i = item.split(" ")
+        if i[0] == "v":
+            vert.append(i)
+    for item in text:
+        i = item.split(" ")
+        if i[0] == "f":
+            add_polygon(polygons, vert[int(i[1])][1], vert[int(i[1])][2], vert[int(i[1])][3],vert[int(i[2])][1], vert[int(i[2])][2], vert[int(i[2])][3], vert[int(i[3])][1], vert[int(i[3])][2], vert[int(i[3])][3])
 
 def add_box( polygons, x, y, z, width, height, depth ):
     x1 = x + width

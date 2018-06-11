@@ -106,6 +106,11 @@ def run(filename):
             matrix_mult( stack[-1], tmp )
             draw_polygons(tmp, screen, zbuffer, view, ambient, light, areflect, dreflect, sreflect)
             tmp = []
+        elif c == 'mesh':
+            add_mesh(tmp, args[0], step_3d) #are the args correct
+            matrix_mult(stack[-1], tmp)
+            draw_polygons(tmp, screen, zbuffer, view, ambient, light, areflect, dreflect, sreflect)
+            tmp = []
         elif c == 'sphere':
             add_sphere(tmp,
                        args[0], args[1], args[2], args[3], step_3d)
