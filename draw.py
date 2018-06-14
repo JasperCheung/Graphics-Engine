@@ -93,7 +93,9 @@ def draw_polygons( matrix, screen, zbuffer, view, ambient, light, areflect, dref
             #            screen, zbuffer, color)
         point+= 3
 
-def add_mesh(polygons, filename):
+def add_mesh(matrix, filename):
+
+    """
     vert = []
     f = open(filename, 'r')
     text = f.read().split("\n")
@@ -105,6 +107,31 @@ def add_mesh(polygons, filename):
         i = item.split(" ")
         if i[0] == "f":
             add_polygon(polygons, vert[int(i[1])][1], vert[int(i[1])][2], vert[int(i[1])][3],vert[int(i[2])][1], vert[int(i[2])][2], vert[int(i[2])][3], vert[int(i[3])][1], vert[int(i[3])][2], vert[int(i[3])][3])
+    """
+    source = open(filename, "r")
+    lines = source.read().split("\n")
+    source.close()
+    vertices = []
+    polygons = []
+    for line in lines:
+        if line.find("v ") == 0:
+            coordinates = []
+            for coordinate in line.split()[1:]:
+                coordinates.append(float(coordinate))
+            vertices.append(coordinates)
+        elif line.find("f ") == 0:
+            indices = []
+            for index in line.split()[1:]:
+                index = int(index.split("/")[0])
+                if index > 0:
+                    index -= 1
+                indices.append(index)
+            polygons.append(indices)
+    for polygon in polygons:
+        p0 = vertices[polygon[0]]
+        p1 = vertices[polygon[1]]
+        p2 = vertices[polygon[2]]
+        add_polygon( matrix, p0[0], p0[1], p0[2], p1[0], p1[1], p1[2], p2[0], p2[1], p2[2],)
 
 def add_box( polygons, x, y, z, width, height, depth ):
     x1 = x + width
